@@ -1,0 +1,53 @@
+# purplebottle
+
+1. DIRECTORY STRUCTURE
+  driver.c - main driver
+  sqlite3.c - tiny database engine (see sqlite3.org)
+  sqlite3.h - header 
+  Makefile - compile directives configuration
+  README
+
+2. OVERVIEW
+  sqlite is a tiny embedded database engine that we will use to keep track of
+metadata (aka catalogs). It's a standalone executable that is compiled along with the test driver. The schema/data is stored within a single file called 'toy.db' 
+  Currently 'toy.db' only stores a single table. We will add more tables and build/update metadata information into it using our driver code.
+
+3. COMPILE
+   To compile the code type 'make'. This will prooduce an executable called a.out.
+   To run the executable type ./a.out   
+   It just prints the contents of the single table 'test' from within 'toy.db'
+
+4. USING SQLITE3 COMMAND-LINE SHELL
+  - Access 'toy.db' using a sqlite3 (a command line tool called sqlite3 can be found installed in most linux distributions..if not do apt-get install sqlite3)
+  - At the comand prompt, type:
+		 sqlite3 toy.db
+  - Inside the sqlite3 shell you can examine the tables by typing
+     .tables  # in toy.db there is only a single table called test
+  - To look at existing data in the table test, type 
+     select * from test; 
+  - To turn on headers type
+     .headers 
+
+  - Try adding a few more cheesy quotes to table 'test'
+      insert into test values ("An age is called Dark not because the light fails to shine, but because people fail to see it");
+      insert into test values ("All the world's a stage, we all are players");
+
+  - Let's add a new table called planets to 'toy.db'..
+      create table planets (name char[32], distance int);
+
+  - Now let's populate it
+	  insert into planets values ("mercury", 36000000);
+	  insert into planets values ("venus", 67200000);
+	  insert into planets values ("earth", 93000000);
+	  insert into planets values ("mars", 141600000);
+	  insert into planets values ("jupiter", 483600000);
+	  fill the rest..saturn 888.2M, uranus 1.8B, neptune 2.8B, pluto ?
+
+4. COMMIT YOUR CHANGES TO GITHUB
+	git status
+    git add toy.db
+    git commit -m "toy.db updated to have more cheesy one-liners and a new table called planet..harish1"
+    git push
+
+5. FINALLY..
+	If you have come to this step, then congratulations..You have earned yourself a beer ;)
